@@ -1,5 +1,8 @@
-// console.log('Hello World')
-// console.log(5 + 5)
+// getComputerChoice is correct
+// getHumanChoice is correct
+//playrRound function is correct
+let humanScore = 0;
+let computerScore = 0
 
 function getComputerChoice () {
     const randomNumber = Math.floor(Math.random() * 3) + 1;
@@ -15,3 +18,75 @@ function getComputerChoice () {
 }
 
 console.log(getComputerChoice())
+
+function getHumanChoice () {
+    let askUser = prompt('rock, paper, or scissors?')
+    
+    if (askUser === null) {
+        return getHumanChoice();
+    } else if (askUser === 'rock') {
+        return 'rock'
+    } else if (askUser === 'paper') {
+        return 'paper';
+    } else if (askUser === 'scissors') {
+        return 'scissors';
+    } else {
+        return getHumanChoice();
+    }
+}
+
+function playRound (humanChoice, computerChoice) {
+    humanChoice = humanChoice.toLowerCase();
+    computerChoice = computerChoice.toLowerCase();
+
+    if (humanChoice === 'rock' && computerChoice === 'rock') {
+        console.log('Tie this round');
+        console.log(`player has ${humanScore}, computer has ${computerScore}`);
+    } else if (humanChoice === 'paper' && computerChoice === 'paper') {
+        console.log('Tie this round');
+        console.log(`player has ${humanScore}, computer has ${computerScore}`);
+    } else if (humanChoice === 'scissors' && computerChoice === 'scissors') {
+        console.log('Tie');
+        console.log(`player has ${humanScore}, computer has ${computerScore}`);
+    } else if (humanChoice === 'rock') {
+        if (computerChoice === 'paper') {
+            ++computerScore;
+            console.log('computer wins this round');
+            console.log(`player has ${humanScore}, computer has ${computerScore}`);
+        }
+
+        if (computerChoice === 'scissors') {
+            ++humanScore;
+            console.log('player wins this round');
+            console.log(`player has ${humanScore}, computer has ${computerScore}`);
+        }
+    } else if (humanChoice === 'paper') {
+        if (computerChoice === 'rock') {
+            ++humanScore;
+            console.log('player wins this round');
+            console.log(`player has ${humanScore}, computer has ${computerScore}`);
+        }
+
+        if (computerChoice === 'scissors') {
+            ++computerScore
+            console.log('computer wins this round');
+            console.log(`player has ${humanScore}, computer has ${computerScore}`);
+        }
+    } else if (humanChoice === 'scissors') {
+        if (computerChoice === 'rock') {
+            ++computerScore
+            console.log('computer wins this round');
+            console.log(`player has ${humanScore}, computer has ${computerScore}`);
+        }
+
+        if (computerChoice === 'paper') {
+            ++humanScore;
+            console.log('player wins this round');
+            console.log(`player has ${humanScore}, computer has ${computerScore}`);
+        }
+    }
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+playRound(humanSelection, computerSelection);
